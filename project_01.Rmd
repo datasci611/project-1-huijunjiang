@@ -1,0 +1,69 @@
+---
+title: "Project_01"
+author: "Huijun_Jiang"
+date: "September 23, 2018"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+data(chickwts)
+  ggplot(data=chickwts,mapping=aes(x=reorder(feed, weight, FUN = median),y=weight))+
+    geom_boxplot()+
+    theme_bw() +
+    xlab('Feed Type') +
+    ylab('Weight')
+  summary.matrix(chickwts)
+```
+This figure was derived from the "chickwts" data set in R, which is derived from "Biometrika, 1948". It is a A data frame with 71 observations on the following 2 variables.The 2 variables are chicks weights in grams after six weeks and their feed types. The average weight(reported in grams) is 261.3 grams. According to the figure, we can conclude that chicks fed with casein grow fastest and chicks fed with horsebean grow lowest.
+
+As a next step, it would be interesting to look at more than just the relationship between chicks weight and feed types, but actually see the percentage of the growth of each type of feed. And the relationship between a specific feed type and the growth of weight. 
+
+Finish
+```{r}
+data(trees)
+ggplot(data=trees,mapping=aes(x=Volume,y=Girth))+
+  geom_point(mapping=aes(color=Height))+
+  geom_smooth()
+summary(trees)
+
+
+```
+This figure was derived from the "trees" data set in R, which is derived from "The Minitab Student Handbook,1976". It is a data set provides measurements of the girth, height and volume of timber in 31 felled black cherry trees.The average Height is 76 ft; the average Girth is 13.25 inches; the average Volume is 30.17 cubic ft. According to the figure, we can conclude that if the tree diameter is larger then the volume of timber is larger. The relationship between girth and volume is positively related.
+
+As a next step, it would be interesting to look at more than just the relationship between girth and volume, but actually figure out the relationship among the three variables, that is girth, height and volume.
+
+Finish
+```{r}
+data(ToothGrowth)
+ggplot(data=ToothGrowth,mapping = aes(x=dose,y=len))+
+  geom_boxplot(mapping = aes(group=cut_number(dose,n=3)))+
+  facet_grid(.~supp)
+summary(ToothGrowth)
+longlength <- filter(ToothGrowth,len>25)
+longlength
+
+```
+This figure was derived from the "ToothGrowth" data set in R, which is derived from " The Statistics of Bioassay,1952". It is a data set provides the length of odontoblasts in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or ascorbic acid (a form of vitamin C and coded as VC). The average length of odontoblasts is 18.81. According to the figure, we can conclude that among three dose levels of vitamin C, the higher the dose level is the longer the odontoblasts of the pigs grow. Besides, the delivery methods influence the growth of the odontoblast apparently when the dose level is 0.5mg/day and 1 mg/day. Orange juice might be better for pigs to absorb vitamin C than ascorbic acid.
+
+As a next step, it would be interesting to look at the specific effect weight of the delivery methods and dose levels of vitamin C on the growth of the odontoblast.
+
+Finish
+```{r}
+data(USArrests)
+USArrests <- mutate(USArrests,sumcrime=Murder+Assault+Rape)               
+summary(USArrests)
+highcrimerate <- filter(USArrests,sumcrime>285)
+highcrimerate
+lowcrimerate <- filter(USArrests,sumcrime<128)
+lowcrimerate
+ggplot(data=USArrests,mapping=aes(x=UrbanPop,y=Rape))+
+  geom_point()
+```
+
+This figure was derived from the "USArrests" data set in R, which is derived from " World Almanac and Book of facts 1975.". It is a data set contains statistics, in arrests per 100,000 residents for assault, murder, and rape in each of the 50 US states in 1973. Also given is the percent of the population living in urban areas. The average crime rate in USA is 199.8(per 100,000). According to the figure, we can conclude that the larger the percent urban population is the probability of larger rape arrests is high. Among the three crime arrests, Assault arrest has the higest percent.
+
+As a next step, it would be interesting to look at the relationship between crime arrest and urbanpop of each crime arrest.
+
+Finish
